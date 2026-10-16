@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Contact Us | Lifestyle Electronics
+{% endblock %}
+
+{% block body %}
+
+<!-- Product Categories Navigation -->
+<div class="shadow p-2 rounded" style="background-color:#e9ecef; color:black">
+    <div class="row text-center font-weight-bold">
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <p><a href="/products">All Products</a></p>
+        </div>
+        {% for category in categories %}
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <p><a href="/products/?category={{ category.id }}">{{ category.category_name }}</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div class="contact-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Contact Us</h1>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-lg-4 col-sm-12">
+                <div class="contact-info-left">
+                    <h2>CONTACT INFO</h2>
+                    <p>
+                        We’re here to provide you with the best service for all your electronics needs.
+                        Feel free to reach out to us anytime for product inquiries, technical support, or store information.
+                    </p>
+                    <ul>
+                        <li>
+                            <p><i class="fas fa-map-marker-alt"></i> Address: Putalisadak Street, Ward No. 31<br> 
+                               Kathmandu 44600, Nepal 
+                            </p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-phone-square"></i> Phone: 
+                                <a href="tel:01-4256789">01-4256789</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p><i class="fas fa-envelope"></i> Email: 
+                                <a href="mailto:support@egadgetsonline.com">support@egadgetsonline.com</a>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-lg-8 col-sm-12">
+                <div class="contact-form-right">
+                    <h2>GET IN TOUCH</h2>
+                    <p>Have questions about our products or services? Our team is here to assist you with expert advice and support.</p>
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" name="name" 
+                                        placeholder="Your Name" required 
+                                        data-error="Please enter your name">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="email" placeholder="Your Email" id="email" 
+                                        class="form-control" name="email" required 
+                                        data-error="Please enter a valid email">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="subject" name="subject" 
+                                        placeholder="Subject" required 
+                                        data-error="Please enter your subject">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="message" name="message" 
+                                        placeholder="Your Message" rows="4" required 
+                                        data-error="Write your message"></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                
+                                <div class="submit-button text-center">
+                                    <button class="btn hvr-hover" id="submit" type="submit">Send Message</button>
+                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div> <!-- End Contact Form -->
+            </div> <!-- End col-lg-8 -->
+        </div> <!-- End row -->
+    </div> <!-- End container -->
+</div> <!-- End contact-box-main -->
+
+{% endblock %}
