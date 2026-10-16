@@ -48,8 +48,11 @@ def updateprofile(request):
         if not fname.isalpha() or not lname.isalpha():
             messages.warning(request,"Name must contain only letters.")
             return HttpResponseRedirect('/account/updateprofile')
-        if len(str(phone))!=10:
+        if len(str(phone))!=10 or not str(phone).isdigit():
             messages.warning(request,"Phone number must contain 10 digits.")
+            return HttpResponseRedirect('/account/updateprofile')
+        if pin and (not str(pin).isdigit() or len(str(pin)) > 6 or int(pin) > 2147483647):
+            messages.warning(request, "PIN Code is out of range. Please fill it up again.")
             return HttpResponseRedirect('/account/updateprofile')
 
         update_user = User.objects.get(id=current_user.id)

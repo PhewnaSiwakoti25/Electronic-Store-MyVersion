@@ -5,7 +5,11 @@ from django.utils.timezone import now
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default="")
     phone = models.BigIntegerField()
+    house_no = models.CharField(null=True, max_length=20)
+    street = models.CharField(null=True, max_length=50)
     city = models.CharField(null=True, max_length=20)
+    pin = models.IntegerField(null=True)
+    state = models.CharField(null=True, max_length=20)
     profile_pic = models.ImageField(null=True, upload_to="customer_pic", default="userimg.png")
 
     def __str__(self):

@@ -10,6 +10,16 @@ Checkout | Lifestyle Electronics
 {% block body %}
 <div class="cart-box-main">
     <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
         <div class="row">
             <div class="col-md-12 col-lg-12 mb-3">
                 <div class="odr-box">
@@ -75,37 +85,37 @@ Checkout | Lifestyle Electronics
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="firstname">First name *</label>
-                                    <input type="text" class="form-control" name="firstname" value="{{ myuser.first_name }}" required>
+                                    <input type="text" class="form-control" name="firstname" value="{% if form_data %}{{ form_data.firstname }}{% else %}{{ myuser.first_name }}{% endif %}" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="lastname">Last name *</label>
-                                    <input type="text" class="form-control" name="lastname" value="{{ myuser.last_name }}" required>
+                                    <input type="text" class="form-control" name="lastname" value="{% if form_data %}{{ form_data.lastname }}{% else %}{{ myuser.last_name }}{% endif %}" required>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="phone">Mobile No. *</label>
-                                <input type="tel" class="form-control" name="phone" value="{{ customer.phone }}" required>
+                                <input type="tel" class="form-control" name="phone" pattern="[0-9]+" inputmode="numeric" title="Please enter numbers only" value="{% if form_data %}{{ form_data.phone }}{% else %}{{ customer.phone }}{% endif %}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="house_no">House No./Flat No./Apartment *</label>
-                                <input type="text" class="form-control" name="house_no" value="{{ customer.house_no }}" required>
+                                <input type="text" class="form-control" name="house_no" value="{% if form_data %}{{ form_data.house_no }}{% elif customer.house_no %}{{ customer.house_no }}{% endif %}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="street">Street/Locality *</label>
-                                <input type="text" class="form-control" name="street" value="{{ customer.street }}" required>
+                                <input type="text" class="form-control" name="street" value="{% if form_data %}{{ form_data.street }}{% elif customer.street %}{{ customer.street }}{% endif %}" required>
                             </div>
                             <div class="row">
                                 <div class="col-md-5 mb-3">
                                     <label for="state">State *</label>
-                                    <input class="form-control" name="state" value="{{ customer.state }}" required>
+                                    <input class="form-control" name="state" value="{% if form_data %}{{ form_data.state }}{% elif customer.state %}{{ customer.state }}{% endif %}" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="city">City *</label>
-                                    <input class="form-control" name="city" value="{{ customer.city }}" required>
+                                    <input class="form-control" name="city" value="{% if form_data %}{{ form_data.city }}{% elif customer.city %}{{ customer.city }}{% endif %}" required>
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label for="pin">PIN Code *</label>
-                                    <input type="tel" class="form-control" name="pin" value="{{ customer.pin }}" required>
+                                    <input type="tel" class="form-control" name="pin" pattern="[0-9]+" inputmode="numeric" title="Please enter numbers only" value="{% if form_data %}{{ form_data.pin }}{% elif customer.pin %}{{ customer.pin }}{% endif %}" required>
                                 </div>
                             </div>
                         </div>
